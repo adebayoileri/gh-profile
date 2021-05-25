@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="https://github.githubassets.com/favicons/favicon.png"
+      type="image/x-icon"
+    />
+    <title>Github Profile</title>
+  </head>
+  <link rel="stylesheet" href="css/style.css" />
+  <body>
+    <div class="home-container">
+      <div class="input-box">
+        <div class="input-box__logo">
+          <img src="./assets/octo.svg" alt="github" />
+        </div>
+        <div class="user-form u-mt-medium">
+          <input
+            type="text"
+            id="gh-username"
+            class="user-form__input"
+            placeholder="Enter your github username"
+            required
+          />
+          <div class="user-form__error-msg"></div>
+          <a href="#" class="btn btn--green u-mt-small" id="gh-fetchbtn">
+            View Profile
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="/config.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
