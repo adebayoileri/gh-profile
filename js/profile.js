@@ -5,14 +5,17 @@ if (!userData) {
 
 // DEFINE VARIABLES
 
-const userAvatarImg = document.querySelector(".gh-user__avatar");
+const userAvatarImg = document.querySelectorAll(".gh-user__avatar");
 const userContentAvatar = document.querySelector(".content-nav-profile-img");
 const userMainAvatar = document.querySelector("#user-profile-avatar");
+const navMenuBtn = document.querySelector(".gh-nav__menu ");
+const mobileMenuDiv = document.querySelector(".gh-mobile-nav");
 const createActionsBtn = document.querySelector("#create-actions-btn");
 const createActionsDiv = document.querySelector("#create-actions");
 const viewOptionsBtn = document.querySelector("#view-options-btn");
 const viewOptionsDiv = document.querySelector("#view-options");
-const userStatusDiv = document.querySelector(".gh-user-status");
+const userStatusDiv = document.querySelectorAll(".gh-user-status");
+const userAvatarStatusDiv = document.querySelector(".user-profile-status-box");
 const userProfileContentDiv = document.querySelector(".content-nav-profile");
 const userSignedInDiv = document.querySelectorAll(".gh-current-username");
 const userFullName = document.querySelector(".gh-user-fullname");
@@ -27,19 +30,35 @@ const mobileSectionNav = document.querySelector(".mobile-section-nav");
 document.title = `${userData.login} (${userData.name})`;
 
 // set user avatar
-userAvatarImg.src = userData.avatarUrl;
+for (item of userAvatarImg) {
+  item.src = userData.avatarUrl;
+}
 userContentAvatar.src = userData.avatarUrl;
 userMainAvatar.src = userData.avatarUrl;
 
 // set user repo count
 userRepoCount.textContent = userData.repositories.totalCount;
+
 // set users status
-userStatusDiv.innerHTML = `${
+for (item of userStatusDiv) {
+  item.innerHTML = `${
+    userData?.status?.emojiHTML
+      ? `${userData.status.emojiHTML} <span class="gh-status-message">${
+          userData.status?.message ? userData.status?.message : "Edit Status"
+        }</span>`
+      : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path></svg><span class="gh-status-message"> Set status </span>`
+  }`;
+}
+
+userAvatarStatusDiv.innerHTML = `${
   userData?.status?.emojiHTML
-    ? `${userData.status.emojiHTML} <span class="gh-status-message">${
+    ? `${userData.status.emojiHTML} <span class="gh-status-message--hover">${
         userData.status?.message ? userData.status?.message : "Edit Status"
       }</span>`
-    : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path></svg><span class="gh-status-message"> Set status </span>`
+    : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path></svg>
+    <span class="gh-status-message--hover">${
+      userData.status?.message ? userData.status?.message : "Edit Status"
+    }</span>`
 }`;
 
 // set current signed in user
@@ -61,6 +80,11 @@ createActionsBtn.addEventListener("click", () => {
   viewOptionsDiv.classList.remove("d-flex-show");
 });
 
+// mobile nav bar
+navMenuBtn.addEventListener("click", () => {
+  mobileMenuDiv.classList.toggle("d-flex-show");
+});
+
 // show user avatar and username on sticky nav
 window.addEventListener("scroll", () => {
   window.scrollY > 400
@@ -78,25 +102,43 @@ const moveContentNav = () => {
     ? (contentNavDiv.style.display = "none")
     : (contentNavDiv.style.display = "flex");
 };
+
+moveContentNav();
+
 window.addEventListener("resize", () => {
   moveContentNav();
 });
 
 // function to format date
+const intervals = [
+  { label: "year", seconds: 31536000 },
+  { label: "month", seconds: 2592000 },
+  { label: "day", seconds: 86400 },
+  { label: "hour", seconds: 3600 },
+  { label: "minute", seconds: 60 },
+  { label: "second", seconds: 1 },
+];
 
-function formatDate(date) {
+// last updated date in github.com format
+
+function timeSince(date) {
   let updateMonth = new Date(date).getMonth();
   let currentMonth = new Date().getMonth();
+  const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
+  const interval = intervals.find((i) => i.seconds < seconds);
+  const count = Math.floor(seconds / interval.seconds);
 
-  if (updateMonth === currentMonth) {
-    let dateOfUpdate = new Date(date).getDate();
-    let currentDate = new Date().getDate();
-    return `${currentDate - dateOfUpdate} days ago`;
-  } else {
+  if (interval.label === "month") {
+    if (updateMonth === currentMonth) {
+      let dateOfUpdate = new Date(date).getDate();
+      let currentDate = new Date().getDate();
+      return `${currentDate - dateOfUpdate} days ago`;
+    }
     date = new Date(date).toDateString().split(" ");
     date.shift(), date.pop();
     return `on ${date.join(" ")}`;
   }
+  return `${count} ${interval.label}${count !== 1 ? "s" : ""} ago`;
 }
 
 // load user repos
@@ -164,7 +206,7 @@ userRepoData &&
           }
         
         <span class="repo-box__item repo-box__timestamp"
-          >Updated ${formatDate(repo?.updatedAt)}</span
+          >Updated ${timeSince(repo?.updatedAt)}</span
         >
       </div>
     </div>

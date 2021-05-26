@@ -41,31 +41,13 @@ const fetchUserInfoQuery = (userName) => {
                     login
                     name
                     bio
-                    followers {
-                      totalCount
-                    }
-                    following {
-                      totalCount
-                    }
                     starredRepositories {
                       totalCount
                     }
-                    websiteUrl
-                    twitterUsername
-        
                     repositories(first: 20, orderBy: {field: UPDATED_AT, direction: DESC}) {
                         nodes{
                             name
                             description
-                            repositoryTopics(first: 10) {
-                                nodes {
-                                    topic {
-                                        name
-                                    }
-                                    url
-                                }
-                            } 
-        
                             languages(orderBy: {direction: DESC, field: SIZE}, first: 1) {
                                 nodes {
                                     color
@@ -77,7 +59,7 @@ const fetchUserInfoQuery = (userName) => {
                             forkCount
                             updatedAt
                             url
-                            viewerHasStarred
+                            
                         }
                         totalCount
                     }
