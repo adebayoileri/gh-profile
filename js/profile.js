@@ -85,8 +85,18 @@ navMenuBtn.addEventListener("click", () => {
   mobileMenuDiv.classList.toggle("d-flex-show");
 });
 
+// close all dropdowns on body focus
+
+createActionsBtn.addEventListener("focusout", () => {
+  createActionsDiv.classList.remove("d-flex-show");
+});
+
 // show user avatar and username on sticky nav
 window.addEventListener("scroll", () => {
+  window.scrollY > 150
+    ? (contentNavDiv.style.position = "sticky")
+    : (contentNavDiv.style.position = "static");
+
   window.scrollY > 400
     ? userProfileContentDiv.classList.add("gh-visible")
     : userProfileContentDiv.classList.remove("gh-visible");

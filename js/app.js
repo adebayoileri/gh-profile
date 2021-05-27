@@ -78,14 +78,6 @@ userName.onkeydown = async (e) => {
   }
 };
 
-const validateInput = () => {
-  getProfileBtn.textContent = "View Profile";
-  getProfileBtn.disabled = false;
-  errorDiv.textContent = "kindly, enter a valid github username";
-  errorDiv.style.visibility = "visible";
-  errorDiv.style.opacity = "1";
-};
-
 /**
  *
  * @name getProfile
@@ -105,9 +97,17 @@ const getProfile = async () => {
 
       window.location.href = "/profile.html";
     } else {
-      validateInput();
+      getProfileBtn.textContent = "View Profile";
+      getProfileBtn.disabled = false;
+      errorDiv.textContent = "kindly, enter a valid github username";
+      errorDiv.style.visibility = "visible";
+      errorDiv.style.opacity = "1";
     }
   } else {
-    validateInput();
+    getProfileBtn.textContent = "View Profile";
+    getProfileBtn.disabled = false;
+    errorDiv.textContent = "kindly, enter a valid github username";
+    errorDiv.style.visibility = "visible";
+    errorDiv.style.opacity = "1";
   }
 };
