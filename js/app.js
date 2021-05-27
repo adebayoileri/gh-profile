@@ -78,6 +78,15 @@ userName.onkeydown = async (e) => {
   }
 };
 
+const validateInput = () => {
+  getProfileBtn.textContent = "View Profile";
+  getProfileBtn.disabled = false;
+  errorDiv.style.visibility = "visible";
+  // errorDiv.style.display = "flex";
+  errorDiv.style.opacity = "1";
+  errorDiv.textContent = "kindly, enter a valid github username";
+}
+
 /**
  *
  * @name getProfile
@@ -90,24 +99,16 @@ const getProfile = async () => {
   let userData = "";
   if (userName.value) {
     userData = await getData(fetchUserInfoQuery(userName.value));
-    if (userData) {
+    if (userData !== null) {
       getProfileBtn.textContent = "View Profile";
       getProfileBtn.disabled = false;
       localStorage.setItem("userData", JSON.stringify(userData));
 
       window.location.href = "/profile.html";
     } else {
-      getProfileBtn.textContent = "View Profile";
-      getProfileBtn.disabled = false;
-      errorDiv.textContent = "kindly, enter a valid github username";
-      errorDiv.style.visibility = "visible";
-      errorDiv.style.opacity = "1";
+    validateInput()
     }
   } else {
-    getProfileBtn.textContent = "View Profile";
-    getProfileBtn.disabled = false;
-    errorDiv.textContent = "kindly, enter a valid github username";
-    errorDiv.style.visibility = "visible";
-    errorDiv.style.opacity = "1";
+    validateInput()
   }
 };

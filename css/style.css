@@ -162,7 +162,8 @@ INDEX PAGE
   box-shadow: 0 1rem 2rem rgba(#0000, 0.1);
 }
 .user-form__input:valid ~ .user-form__error-msg {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .user-form__error-msg {
